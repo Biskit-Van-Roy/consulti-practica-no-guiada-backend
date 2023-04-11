@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.practicanoguiada.model.Compras;
 import com.example.practicanoguiada.response.ComprasResponseRest;
-import com.example.practicanoguiada.response.ComprasResponseRest;
-import com.example.practicanoguiada.services.ComprasService;
 import com.example.practicanoguiada.services.ComprasService;
 
 @CrossOrigin(origins="*", maxAge=3600)

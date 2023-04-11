@@ -11,4 +11,5 @@ public interface PromocionesService {
 	public ResponseEntity<PromocionesResponseRest> save(Promociones promociones);
 	public ResponseEntity<PromocionesResponseRest> update(Promociones promociones, Long id);
 	public ResponseEntity<PromocionesResponseRest> deleteById(Long id);
+
 }

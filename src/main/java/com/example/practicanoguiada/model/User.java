@@ -6,8 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 @Entity
-@Table(name="compras")
-public class Compras {
+@Table(name="user")
+public class User {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,40 +15,63 @@ public class Compras {
 	 * Atributos del Evento
 	 */
 	private Long id;
-	private String fecha_compra;
-	private int id_evento;
-	private int entradas;
+	private String user;
+	private String nombres;
+	private String apellidos;
+	private String email;
+	private String password;
 	private String usuario_creador;
 	private String usuario_modificador;
 	private String fecha_creacion;
 	private String fecha_modificacion;
+	private int rol;
+
 	/**
-	 * Getters y Setters de las Compras
+	 * Superconstructor vacio
+	 */
+	public User() {
+		super();
+	}
+	/**
+	 * Getters y Setters de Usuario
 	 * @return
 	 */
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFecha_compra() {
-		return fecha_compra;
+	public String getUser() {
+		return user;
 	}
-	public void setFecha_compra(String fecha_compra) {
-		this.fecha_compra = fecha_compra;
+	public void setUser(String user) {
+		this.user = user;
 	}
-	public int getId_evento() {
-		return id_evento;
+	public String getNombres() {
+		return nombres;
 	}
-	public void setId_evento(int id_evento) {
-		this.id_evento = id_evento;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
-	public int getEntradas() {
-		return entradas;
+	public String getApellidos() {
+		return apellidos;
 	}
-	public void setEntradas(int entradas) {
-		this.entradas = entradas;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getUsuario_creador() {
 		return usuario_creador;
@@ -74,50 +97,48 @@ public class Compras {
 	public void setFecha_modificacion(String fecha_modificacion) {
 		this.fecha_modificacion = fecha_modificacion;
 	}
+	public int getRol() {
+		return rol;
+	}
+	public void setRol(int rol) {
+		this.rol = rol;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 	/**
-	 * Constructor con los atributos 
+	 * Constructor con los campos
 	 * @param id
-	 * @param fecha_compra
-	 * @param id_evento
-	 * @param entradas
-	 * @param usuario_creador
-	 * @param usuario_modificador
-	 * @param fecha_creacion
-	 * @param fecha_modificacion
+	 * @param user
+	 * @param nombres
+	 * @param apellidos
+	 * @param email
+	 * @param password
+	 * @param rol
 	 */
-	public Compras(Long id, String fecha_compra, int id_evento, int entradas, String usuario_creador,
-			String usuario_modificador, String fecha_creacion, String fecha_modificacion) {
+	public User(Long id, String user, String nombres, String apellidos, String email, String password,
+			String usuario_creador, String usuario_modificador, String fecha_creacion, String fecha_modificacion,
+			int rol) {
 		super();
 		this.id = id;
-		this.fecha_compra = fecha_compra;
-		this.id_evento = id_evento;
-		this.entradas = entradas;
+		this.user = user;
+		this.nombres = nombres;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.password = password;
 		this.usuario_creador = usuario_creador;
 		this.usuario_modificador = usuario_modificador;
 		this.fecha_creacion = fecha_creacion;
 		this.fecha_modificacion = fecha_modificacion;
-	}
-	/**
-	 * Constructor vacio
-	 */
-	public Compras() {
-		super();
-	}
+		this.rol = rol;
+	}	
 	/**
 	 * Generar el ToString
 	 */
 	@Override
 	public String toString() {
-		return "Compras [id=" + id + ", fecha_compra=" + fecha_compra + ", id_evento=" + id_evento + ", entradas="
-				+ entradas + ", usuario_creador=" + usuario_creador + ", usuario_modificador=" + usuario_modificador
-				+ ", fecha_creacion=" + fecha_creacion + ", fecha_modificacion=" + fecha_modificacion + "]";
+		return "User [id=" + id + ", user=" + user + ", nombres=" + nombres + ", apellidos=" + apellidos + ", email="
+				+ email + ", password=" + password + ", rol=" + rol + "]";
 	}
-	
-	
-	
-	
 
 }

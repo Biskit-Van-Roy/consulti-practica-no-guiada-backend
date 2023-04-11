@@ -65,15 +65,16 @@ public ResponseEntity<EventoResponseRest> searchById(Long id) {
 @Override
 public ResponseEntity<EventoResponseRest> save(Evento evento) {
 	List<Evento> list = new ArrayList<>();
+	
 	EventoResponseRest response = new EventoResponseRest();
 	try {
 		Evento eventoSaved = eventoRepo.save(evento);
 		if(eventoSaved != null) {
 			list.add(eventoSaved);
 			response.getEventoResponse().setEvento(list);
-			response.setMetadata("Respuesta correcta", "00", "Usuario guardado");
+			response.setMetadata("Respuesta correcta", "00", "Evento guardado");
 		} else {
-			response.setMetadata("Respuesta icorrecta", "-1", "Usuario no guardado");
+			response.setMetadata("Respuesta icorrecta", "-1", "Evento no guardado");
 			return new ResponseEntity<EventoResponseRest>(response,HttpStatus.BAD_REQUEST);
 		}
 		

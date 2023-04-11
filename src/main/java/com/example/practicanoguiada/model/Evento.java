@@ -1,7 +1,10 @@
 package com.example.practicanoguiada.model;
 
 import java.io.Serializable;
+
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +22,7 @@ public class Evento implements Serializable {
 	 * Atributos del Evento
 	 */
 	private Long id;
-	private String fechas_compra;
+	private List<String> fechas_compra = new ArrayList<>();
 	private String nombre;
 	private String fecha;
 	private byte[] imagen;
@@ -29,16 +32,17 @@ public class Evento implements Serializable {
 	private String usuario_modificador;
 	private String fecha_creacion;
 	private String fecha_modificacion;
+	private int id_promocion;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getFechas_compra() {
+	public List<String> getFechas_compra() {
 		return fechas_compra;
 	}
-	public void setFechas_compra(String fechas_compra) {
+	public void setFechas_compra(List<String> fechas_compra) {
 		this.fechas_compra = fechas_compra;
 	}
 	public String getNombre() {
@@ -95,12 +99,18 @@ public class Evento implements Serializable {
 	public void setFecha_modificacion(String fecha_modificacion) {
 		this.fecha_modificacion = fecha_modificacion;
 	}
+	public int getId_promocion() {
+		return id_promocion;
+	}
+	public void setId_promocion(int id_promocion) {
+		this.id_promocion = id_promocion;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Evento(Long id, String fechas_compra, String nombre, String fecha, byte[] imagen, double precio,
+	public Evento(Long id, List<String> fechas_compra, String nombre, String fecha, byte[] imagen, double precio,
 			int entradas, String usuario_creador, String usuario_modificador, String fecha_creacion,
-			String fecha_modificacion) {
+			String fecha_modificacion, int id_promocion) {
 		super();
 		this.id = id;
 		this.fechas_compra = fechas_compra;
@@ -113,6 +123,7 @@ public class Evento implements Serializable {
 		this.usuario_modificador = usuario_modificador;
 		this.fecha_creacion = fecha_creacion;
 		this.fecha_modificacion = fecha_modificacion;
+		this.id_promocion = id_promocion;
 	}
 	public Evento() {
 		super();
@@ -122,7 +133,8 @@ public class Evento implements Serializable {
 		return "Evento [id=" + id + ", fechas_compra=" + fechas_compra + ", nombre=" + nombre + ", fecha=" + fecha
 				+ ", imagen=" + Arrays.toString(imagen) + ", precio=" + precio + ", entradas=" + entradas
 				+ ", usuario_creador=" + usuario_creador + ", usuario_modificador=" + usuario_modificador
-				+ ", fecha_creacion=" + fecha_creacion + ", fecha_modificacion=" + fecha_modificacion + "]";
+				+ ", fecha_creacion=" + fecha_creacion + ", fecha_modificacion=" + fecha_modificacion
+				+ ", id_promocion=" + id_promocion + "]";
 	}
 	
 	
