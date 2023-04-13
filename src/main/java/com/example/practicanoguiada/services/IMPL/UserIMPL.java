@@ -20,7 +20,7 @@ public class UserIMPL implements UserService{
 	private PasswordEncoder passwordEncoder;
 	@Override
 	public String registerUser(UserDTO userDTO) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
 		   LocalDateTime now = LocalDateTime.now();
 		User user = new User(
 				userDTO.getId(),

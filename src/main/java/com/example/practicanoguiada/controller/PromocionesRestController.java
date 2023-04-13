@@ -1,5 +1,7 @@
 package com.example.practicanoguiada.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.practicanoguiada.model.Promociones;
@@ -20,8 +23,14 @@ import com.example.practicanoguiada.services.PromocionesService;
 @RestController
 @RequestMapping("/api/v1/promociones")
 public class PromocionesRestController {
-	@Autowired
 	private PromocionesService service;
+	
+	
+	
+	public PromocionesRestController(PromocionesService service) {
+		super();
+		this.service = service;
+	}
 	/**
 	 * Obtener todos los promocioness
 	 * @return
@@ -46,9 +55,34 @@ public class PromocionesRestController {
 	 * @param User
 	 * @return
 	 */
-	@PostMapping("/save")
+	/*@PostMapping("/save")
 	public ResponseEntity<PromocionesResponseRest> save(@RequestBody Promociones promociones){
 		 ResponseEntity<PromocionesResponseRest> response = service.save(promociones);
+		 return response;
+	}*/
+	@PostMapping("/save")
+	public ResponseEntity<PromocionesResponseRest> save(
+			@RequestParam("nombre") String nombre,
+			@RequestParam("fecha_inicio") String fecha_inicio,
+			@RequestParam("fecha_final") String fecha_final,
+			@RequestParam("tipo") int tipo,
+			@RequestParam("descuento") int descuento,
+			@RequestParam("vip") int vip,
+			@RequestParam("eventoId") Long eventoId
+			) throws IOException{
+			Promociones promociones = new Promociones();
+			promociones.setNombre(nombre);
+			promociones.setDescuento(descuento);
+			promociones.setFecha_inicio(fecha_inicio);
+			promociones.setFecha_final(fecha_final);
+			promociones.setTipo(tipo);
+			promociones.setVip(vip);
+			promociones.setUsuario_creador("admin");
+			promociones.setUsuario_modificador("admin");
+			promociones.setFecha_creacion(fecha_inicio);
+			promociones.setFecha_modificacion(fecha_final);
+			System.out.print(promociones);
+		 ResponseEntity<PromocionesResponseRest> response = service.save(promociones, eventoId);
 		 return response;
 	}
 	/**

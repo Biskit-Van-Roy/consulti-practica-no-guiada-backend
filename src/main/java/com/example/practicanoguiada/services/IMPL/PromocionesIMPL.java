@@ -12,18 +12,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.practicanoguiada.model.Evento;
 import com.example.practicanoguiada.model.Promociones;
+import com.example.practicanoguiada.repo.EventoRepo;
 import com.example.practicanoguiada.repo.PromocionesRepo;
 import com.example.practicanoguiada.response.PromocionesResponseRest;
 import com.example.practicanoguiada.services.PromocionesService;
 
 @Service
 public class PromocionesIMPL implements PromocionesService {
-@Autowired
-	
+	@Autowired
 	private PromocionesRepo promocionesRepo;
+	
+	
+	private EventoRepo eventoRepo;
+	
+	public PromocionesIMPL(EventoRepo eventoRepo) {
+		super();
+		this.eventoRepo = eventoRepo;
+	}
  /**
-  * Buscar los promocioness
+  * Buscar los promociones
   */
  @Override
 	@Transactional
@@ -31,7 +40,7 @@ public class PromocionesIMPL implements PromocionesService {
 		PromocionesResponseRest response = new PromocionesResponseRest();
 		try {
 			List<Promociones> promociones = (List<Promociones>) promocionesRepo.findAll();
-			response.getPromocionesResponse().setPromociones(promociones);;
+			response.getPromocionesResponse().setPromociones(promociones);
 			response.setMetadata("Respuesta correcta", "00", "Respuesta exitosa");
 		} catch (Exception e) {
 			
@@ -64,12 +73,19 @@ public ResponseEntity<PromocionesResponseRest> searchById(Long id) {
 	}
 	return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.OK);
 }
-
 @Override
-public ResponseEntity<PromocionesResponseRest> save(Promociones promociones) {
-	List<Promociones> list = new ArrayList<>();
+public ResponseEntity<PromocionesResponseRest> save(Promociones promociones,Long eventoId) {
+	
 	PromocionesResponseRest response = new PromocionesResponseRest();
+	List<Promociones> list = new ArrayList<>();
 	try {
+		Optional<Evento> evento = eventoRepo.findById(eventoId);
+		if(evento.isPresent()) {
+			promociones.setEvento(evento.get());
+		} else {
+			response.setMetadata("Respuesta icorrecta", "-1", "categoria no encontrada");
+			return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.NOT_FOUND);
+		}
 		Promociones promocionesSaved = promocionesRepo.save(promociones);
 		if(promocionesSaved != null) {
 			list.add(promocionesSaved);
@@ -80,6 +96,7 @@ public ResponseEntity<PromocionesResponseRest> save(Promociones promociones) {
 			return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.BAD_REQUEST);
 		}
 		
+		
 	}
 	 catch (Exception e){
 			response.setMetadata("Respuesta incorrecta", "-1", "Error al grabar uuario");
@@ -88,7 +105,40 @@ public ResponseEntity<PromocionesResponseRest> save(Promociones promociones) {
 		}
 	return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.OK);
 }
-
+/*@Override
+public ResponseEntity<PromocionesResponseRest> save(Promociones promociones, Long eventoId) {
+	
+	PromocionesResponseRest response = new PromocionesResponseRest();
+	List<Promociones> list = new ArrayList<>();
+	try {
+		//Buscar el evento para setear la promocion
+		Optional<Evento> evento = eventoRepo.findById(eventoId);
+		if(evento.isPresent()) {
+			promociones.setEventos(evento.get());
+		} else {
+			response.setMetadata("Respuesta incorrecta", "-1", "Evento no encontrado");
+			return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.NOT_FOUND);
+		}
+		//Guardar la promocion
+		Promociones promocionesSaved = promocionesRepo.save(promociones);
+		if(promocionesSaved != null) {
+			list.add(promocionesSaved);
+			response.getPromocionesResponse().setPromociones(list);
+			response.setMetadata("Respuesta correcta", "00", "Promocion guardada");
+		} else {
+			response.setMetadata("Respuesta icorrecta", "-1", "Promocion no guardada");
+			return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	 catch (Exception e){
+			response.setMetadata("Respuesta incorrecta", "-1", "Error al grabar la promocion");
+			e.getStackTrace();
+			return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	return new ResponseEntity<PromocionesResponseRest>(response,HttpStatus.OK);
+}
+*/
 @Override
 public ResponseEntity<PromocionesResponseRest> update(Promociones promociones, Long id) {
 	PromocionesResponseRest response = new PromocionesResponseRest();

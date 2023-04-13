@@ -14,4 +14,6 @@ public interface EventoService {
 	public ResponseEntity<EventoResponseRest> save(Evento evento);
 	public ResponseEntity<EventoResponseRest> update(Evento evento, Long id);
 	public ResponseEntity<EventoResponseRest> deleteById(Long id);
+	public ResponseEntity<EventoResponseRest> searchByNombre(String nombre);
+	public ResponseEntity<EventoResponseRest> findByNombreLike(String nombre);
 }

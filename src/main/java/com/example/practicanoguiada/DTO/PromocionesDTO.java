@@ -1,7 +1,8 @@
 package com.example.practicanoguiada.DTO;
 
-import java.util.ArrayList;
-import java.util.List;
+
+
+import com.example.practicanoguiada.model.Evento;
 
 
 public class PromocionesDTO {
@@ -16,7 +17,7 @@ public class PromocionesDTO {
 	private String usuario_modificador;
 	private String fecha_creacion;
 	private String fecha_modificacion;
-	private List<Integer> eventos = new ArrayList<>();
+	private Evento evento;
 	public Long getId() {
 		return id;
 	}
@@ -83,15 +84,15 @@ public class PromocionesDTO {
 	public void setFecha_modificacion(String fecha_modificacion) {
 		this.fecha_modificacion = fecha_modificacion;
 	}
-	public List<Integer> getEventos() {
-		return eventos;
+	public Evento getEvento() {
+		return evento;
 	}
-	public void setEventos(List<Integer> eventos) {
-		this.eventos = eventos;
+	public void setEvento(Evento evento) {
+		this.evento = evento;
 	}
 	public PromocionesDTO(Long id, String fecha_inicio, String fecha_final, String nombre, int tipo, int descuento,
 			int vip, String usuario_creador, String usuario_modificador, String fecha_creacion,
-			String fecha_modificacion, List<Integer> eventos) {
+			String fecha_modificacion, Evento evento) {
 		super();
 		this.id = id;
 		this.fecha_inicio = fecha_inicio;
@@ -104,7 +105,7 @@ public class PromocionesDTO {
 		this.usuario_modificador = usuario_modificador;
 		this.fecha_creacion = fecha_creacion;
 		this.fecha_modificacion = fecha_modificacion;
-		this.eventos = eventos;
+		this.evento = evento;
 	}
 	public PromocionesDTO() {
 		super();
@@ -115,10 +116,8 @@ public class PromocionesDTO {
 		return "PromocionesDTO [id=" + id + ", fecha_inicio=" + fecha_inicio + ", fecha_final=" + fecha_final
 				+ ", nombre=" + nombre + ", tipo=" + tipo + ", descuento=" + descuento + ", vip=" + vip
 				+ ", usuario_creador=" + usuario_creador + ", usuario_modificador=" + usuario_modificador
-				+ ", fecha_creacion=" + fecha_creacion + ", fecha_modificacion=" + fecha_modificacion + ", eventos="
-				+ eventos + "]";
+				+ ", fecha_creacion=" + fecha_creacion + ", fecha_modificacion=" + fecha_modificacion + ", evento="
+				+ evento + "]";
 	}
-	
-	
 	
 }

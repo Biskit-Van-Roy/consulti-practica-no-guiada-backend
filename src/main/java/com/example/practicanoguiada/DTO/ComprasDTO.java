@@ -5,6 +5,7 @@ public class ComprasDTO {
 	private String fecha_compra;
 	private int id_evento;
 	private int entradas;
+	private double venta;
 	private String usuario_creador;
 	private String usuario_modificador;
 	private String fecha_creacion;
@@ -33,6 +34,12 @@ public class ComprasDTO {
 	public void setEntradas(int entradas) {
 		this.entradas = entradas;
 	}
+	public double getVenta() {
+		return venta;
+	}
+	public void setVenta(double venta) {
+		this.venta = venta;
+	}
 	public String getUsuario_creador() {
 		return usuario_creador;
 	}
@@ -57,13 +64,14 @@ public class ComprasDTO {
 	public void setFecha_modificacion(String fecha_modificacion) {
 		this.fecha_modificacion = fecha_modificacion;
 	}
-	public ComprasDTO(Long id, String fecha_compra, int id_evento, int entradas, String usuario_creador,
+	public ComprasDTO(Long id, String fecha_compra, int id_evento, int entradas, double venta, String usuario_creador,
 			String usuario_modificador, String fecha_creacion, String fecha_modificacion) {
 		super();
 		this.id = id;
 		this.fecha_compra = fecha_compra;
 		this.id_evento = id_evento;
 		this.entradas = entradas;
+		this.venta = venta;
 		this.usuario_creador = usuario_creador;
 		this.usuario_modificador = usuario_modificador;
 		this.fecha_creacion = fecha_creacion;
@@ -71,12 +79,16 @@ public class ComprasDTO {
 	}
 	public ComprasDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
 		return "ComprasDTO [id=" + id + ", fecha_compra=" + fecha_compra + ", id_evento=" + id_evento + ", entradas="
-				+ entradas + ", usuario_creador=" + usuario_creador + ", usuario_modificador=" + usuario_modificador
-				+ ", fecha_creacion=" + fecha_creacion + ", fecha_modificacion=" + fecha_modificacion + "]";
+				+ entradas + ", venta=" + venta + ", usuario_creador=" + usuario_creador + ", usuario_modificador="
+				+ usuario_modificador + ", fecha_creacion=" + fecha_creacion + ", fecha_modificacion="
+				+ fecha_modificacion + "]";
 	}
+	
+	
 	
 }

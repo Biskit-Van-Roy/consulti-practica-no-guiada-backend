@@ -8,7 +8,8 @@ import com.example.practicanoguiada.response.PromocionesResponseRest;
 public interface PromocionesService {
 	public ResponseEntity<PromocionesResponseRest> search();
 	public ResponseEntity<PromocionesResponseRest> searchById(Long id);
-	public ResponseEntity<PromocionesResponseRest> save(Promociones promociones);
+	//public ResponseEntity<PromocionesResponseRest> save(Promociones promociones);
+    public ResponseEntity<PromocionesResponseRest> save(Promociones promociones, Long eventoId);
 	public ResponseEntity<PromocionesResponseRest> update(Promociones promociones, Long id);
 	public ResponseEntity<PromocionesResponseRest> deleteById(Long id);
 
